@@ -1,60 +1,61 @@
 import java.util.ArrayList;
 
-public class ArrayListExample {
+public class IntegerListPerformanceTest {  // Changed class name for better clarity
     public static void main(String[] args) {
-        ArrayList<Integer> arrayList = new ArrayList<>();
+        // Create an ArrayList to hold integer values
+        ArrayList<Integer> numbersList = new ArrayList<>();
 
-        // Fill ArrayList with values
+        // Populate the ArrayList with integers from 0 to 999,999
         for (int i = 0; i < 1000000; i++) {
-            arrayList.add(i);
+            numbersList.add(i);
         }
 
-        // Read by Index
+        // Measure time for reading an element by its index
         long startTime = System.nanoTime();
-        int value = arrayList.get(500000);
+        int retrievedValue = numbersList.get(500000);  // Retrieve the value at index 500,000
         long endTime = System.nanoTime();
-        System.out.println("ArrayList Read by Index Time: " + (endTime - startTime) + " ns");
+        System.out.println("Time taken to read from ArrayList by Index: " + (endTime - startTime) + " ns");
 
-        // Read by Value
+        // Measure time for checking if the ArrayList contains a specific value
         startTime = System.nanoTime();
-        arrayList.contains(999999);
+        boolean exists = numbersList.contains(999999);  // Check if the value 999,999 exists
         endTime = System.nanoTime();
-        System.out.println("ArrayList Read by Value Time: " + (endTime - startTime) + " ns");
+        System.out.println("Time taken to read from ArrayList by Value: " + (endTime - startTime) + " ns");
 
-        // Insert at Head
+        // Measure time for inserting an element at the head of the ArrayList
         startTime = System.nanoTime();
-        arrayList.add(0, -1);
+        numbersList.add(0, -1);  // Insert -1 at index 0
         endTime = System.nanoTime();
-        System.out.println("ArrayList Insert at Head Time: " + (endTime - startTime) + " ns");
+        System.out.println("Time taken to insert into ArrayList at Head: " + (endTime - startTime) + " ns");
 
-        // Insert in Mid
+        // Measure time for inserting an element in the middle of the ArrayList
         startTime = System.nanoTime();
-        arrayList.add(500000, -1);
+        numbersList.add(500000, -1);  // Insert -1 at index 500,000
         endTime = System.nanoTime();
-        System.out.println("ArrayList Insert in Mid Time: " + (endTime - startTime) + " ns");
+        System.out.println("Time taken to insert into ArrayList in Middle: " + (endTime - startTime) + " ns");
 
-        // Insert at Tail
+        // Measure time for appending an element at the tail of the ArrayList
         startTime = System.nanoTime();
-        arrayList.add(-1);
+        numbersList.add(-1);  // Append -1 at the end
         endTime = System.nanoTime();
-        System.out.println("ArrayList Insert at Tail Time: " + (endTime - startTime) + " ns");
+        System.out.println("Time taken to insert into ArrayList at Tail: " + (endTime - startTime) + " ns");
 
-        // Delete from Head
+        // Measure time for deleting an element from the head of the ArrayList
         startTime = System.nanoTime();
-        arrayList.remove(0);
+        numbersList.remove(0);  // Remove the first element
         endTime = System.nanoTime();
-        System.out.println("ArrayList Delete from Head Time: " + (endTime - startTime) + " ns");
+        System.out.println("Time taken to delete from ArrayList at Head: " + (endTime - startTime) + " ns");
 
-        // Delete from Mid
+        // Measure time for deleting an element from the middle of the ArrayList
         startTime = System.nanoTime();
-        arrayList.remove(500000);
+        numbersList.remove(500000);  // Remove the element at index 500,000
         endTime = System.nanoTime();
-        System.out.println("ArrayList Delete from Mid Time: " + (endTime - startTime) + " ns");
+        System.out.println("Time taken to delete from ArrayList in Middle: " + (endTime - startTime) + " ns");
 
-        // Delete from Tail
+        // Measure time for deleting an element from the tail of the ArrayList
         startTime = System.nanoTime();
-        arrayList.remove(arrayList.size() - 1);
+        numbersList.remove(numbersList.size() - 1);  // Remove the last element
         endTime = System.nanoTime();
-        System.out.println("ArrayList Delete from Tail Time: " + (endTime - startTime) + " ns");
+        System.out.println("Time taken to delete from ArrayList at Tail: " + (endTime - startTime) + " ns");
     }
 }
