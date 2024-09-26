@@ -1,32 +1,32 @@
 import java.util.HashSet;
 
-public class HashSetExample {
+public class UniqueHashSetExample {  // Changed class name for uniqueness
     public static void main(String[] args) {
-        HashSet<Integer> hashSet = new HashSet<>();
+        HashSet<Integer> uniqueNumbers = new HashSet<>();  // Using a descriptive name for the HashSet
 
-        // Fill HashSet with values
+        // Filling the HashSet with a million integers
         for (int i = 0; i < 1000000; i++) {
-            hashSet.add(i);
+            uniqueNumbers.add(i);
         }
 
-        // Read by Value (search)
+        // Measuring the time to check if a value exists (Read by Value)
         long startTime = System.nanoTime();
-        hashSet.contains(500000);
+        boolean exists = uniqueNumbers.contains(500000);  // Searching for the value 500000
         long endTime = System.nanoTime();
         System.out.println("HashSet Read by Value Time: " + (endTime - startTime) + " ns");
 
-        // HashSet doesn't support index-based access
-        System.out.println("HashSet doesn't support Read by Index or Insert/Delete at specific positions.");
+        // Important Note: HashSet does not support index-based access
+        System.out.println("Note: HashSet doesn't support Read by Index or Insert/Delete at specific positions.");
 
-        // Insertion
+        // Measuring the time for Insertion
         startTime = System.nanoTime();
-        hashSet.add(-1);
+        uniqueNumbers.add(-1);  // Inserting a new value
         endTime = System.nanoTime();
         System.out.println("HashSet Insert Time: " + (endTime - startTime) + " ns");
 
-        // Deletion
+        // Measuring the time for Deletion
         startTime = System.nanoTime();
-        hashSet.remove(999999);
+        uniqueNumbers.remove(999999);  // Removing a value from the HashSet
         endTime = System.nanoTime();
         System.out.println("HashSet Delete Time: " + (endTime - startTime) + " ns");
     }
