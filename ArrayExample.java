@@ -1,63 +1,63 @@
-public class ArrayExample {
+public class ArrayPerformanceTest {
     public static void main(String[] args) {
-        int size = 1000000;  // Adjusted for 1,000,000 elements
-        int[] array = new int[size];
+        int numberOfElements = 1_000_000;  // Set the array size to 1 million
+        int[] numbers = new int[numberOfElements];
 
-        // Fill array with values
-        for (int i = 0; i < size; i++) {
-            array[i] = i;
+        // Initialize the array with values from 0 to 999999
+        for (int index = 0; index < numberOfElements; index++) {
+            numbers[index] = index;
         }
 
-        // Read by Index
+        // Measure time taken to read an element by its index
         long startTime = System.nanoTime();
-        int value = array[500000];
+        int retrievedValue = numbers[500_000];  // Access the middle element
         long endTime = System.nanoTime();
-        System.out.println("Array Read by Index Time: " + (endTime - startTime) + " ns");
+        System.out.println("Time to Read by Index: " + (endTime - startTime) + " ns");
 
-        // Read by Value
+        // Measure time taken to find a value (search by value)
         startTime = System.nanoTime();
-        for (int i = 0; i < size; i++) {
-            if (array[i] == 999999) break;
+        for (int index = 0; index < numberOfElements; index++) {
+            if (numbers[index] == 999_999) break;  // Search for the last element
         }
         endTime = System.nanoTime();
-        System.out.println("Array Read by Value Time: " + (endTime - startTime) + " ns");
+        System.out.println("Time to Search by Value: " + (endTime - startTime) + " ns");
 
-        // Insertion at Head (shift elements)
+        // Measure time taken to insert an element at the start
         startTime = System.nanoTime();
-        System.arraycopy(array, 0, array, 1, size - 1);  // Shift elements
-        array[0] = -1;
+        System.arraycopy(numbers, 0, numbers, 1, numberOfElements - 1);  // Shift elements to the right
+        numbers[0] = -1;  // Insert -1 at the beginning
         endTime = System.nanoTime();
-        System.out.println("Array Insert at Head Time: " + (endTime - startTime) + " ns");
+        System.out.println("Time to Insert at Start: " + (endTime - startTime) + " ns");
 
-        // Insertion in Middle
+        // Measure time taken to insert an element in the middle
         startTime = System.nanoTime();
-        System.arraycopy(array, 500000, array, 500001, size - 500001);  // Shift elements
-        array[500000] = -1;
+        System.arraycopy(numbers, 500_000, numbers, 500_001, numberOfElements - 500_001);  // Shift elements
+        numbers[500_000] = -1;  // Insert -1 in the middle
         endTime = System.nanoTime();
-        System.out.println("Array Insert in Mid Time: " + (endTime - startTime) + " ns");
+        System.out.println("Time to Insert in Middle: " + (endTime - startTime) + " ns");
 
-        // Insertion at Tail
+        // Measure time taken to insert an element at the end
         startTime = System.nanoTime();
-        array[size - 1] = -1;  // No shifting needed
+        numbers[numberOfElements - 1] = -1;  // Directly insert at the last position
         endTime = System.nanoTime();
-        System.out.println("Array Insert at Tail Time: " + (endTime - startTime) + " ns");
+        System.out.println("Time to Insert at End: " + (endTime - startTime) + " ns");
 
-        // Deletion from Head
+        // Measure time taken to delete the first element
         startTime = System.nanoTime();
-        System.arraycopy(array, 1, array, 0, size - 1);  // Shift elements
+        System.arraycopy(numbers, 1, numbers, 0, numberOfElements - 1);  // Shift elements left
         endTime = System.nanoTime();
-        System.out.println("Array Delete from Head Time: " + (endTime - startTime) + " ns");
+        System.out.println("Time to Delete from Start: " + (endTime - startTime) + " ns");
 
-        // Deletion from Middle
+        // Measure time taken to delete an element from the middle
         startTime = System.nanoTime();
-        System.arraycopy(array, 500001, array, 500000, size - 500001);  // Shift elements
+        System.arraycopy(numbers, 500_001, numbers, 500_000, numberOfElements - 500_001);  // Shift elements
         endTime = System.nanoTime();
-        System.out.println("Array Delete from Mid Time: " + (endTime - startTime) + " ns");
+        System.out.println("Time to Delete from Middle: " + (endTime - startTime) + " ns");
 
-        // Deletion from Tail
+        // Measure time taken to delete the last element
         startTime = System.nanoTime();
-        array[size - 1] = 0;  // No shifting needed
+        numbers[numberOfElements - 1] = 0;  // Set last element to 0 (no shifting needed)
         endTime = System.nanoTime();
-        System.out.println("Array Delete from Tail Time: " + (endTime - startTime) + " ns");
+        System.out.println("Time to Delete from End: " + (endTime - startTime) + " ns");
     }
 }
