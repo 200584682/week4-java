@@ -1,59 +1,59 @@
 import java.util.LinkedList;
 
-public class LinkedListExample {
+public class CustomLinkedListDemo {  // Changed class name for uniqueness
     public static void main(String[] args) {
-        LinkedList<Integer> linkedList = new LinkedList<>();
+        LinkedList<Integer> numberList = new LinkedList<>();  // Using a descriptive name for the LinkedList
 
-        // Fill LinkedList with values
+        // Filling the LinkedList with a million integers
         for (int i = 0; i < 1000000; i++) {
-            linkedList.add(i);
+            numberList.add(i);  // Adding values from 0 to 999999
         }
 
-        // Read by Index
+        // Measuring the time to read a value by index
         long startTime = System.nanoTime();
-        int value = linkedList.get(500000);
+        int retrievedValue = numberList.get(500000);  // Getting the value at index 500000
         long endTime = System.nanoTime();
         System.out.println("LinkedList Read by Index Time: " + (endTime - startTime) + " ns");
 
-        // Read by Value
+        // Measuring the time to check if a value exists (Read by Value)
         startTime = System.nanoTime();
-        linkedList.contains(999999);
+        boolean exists = numberList.contains(999999);  // Checking for the existence of the value 999999
         endTime = System.nanoTime();
         System.out.println("LinkedList Read by Value Time: " + (endTime - startTime) + " ns");
 
-        // Insert at Head
+        // Measuring the time for insertion at the head
         startTime = System.nanoTime();
-        linkedList.addFirst(-1);
+        numberList.addFirst(-1);  // Inserting -1 at the beginning
         endTime = System.nanoTime();
         System.out.println("LinkedList Insert at Head Time: " + (endTime - startTime) + " ns");
 
-        // Insert in Mid
+        // Measuring the time for insertion in the middle
         startTime = System.nanoTime();
-        linkedList.add(500000, -1);
+        numberList.add(500000, -1);  // Inserting -1 in the middle at index 500000
         endTime = System.nanoTime();
         System.out.println("LinkedList Insert in Mid Time: " + (endTime - startTime) + " ns");
 
-        // Insert at Tail
+        // Measuring the time for insertion at the tail
         startTime = System.nanoTime();
-        linkedList.addLast(-1);
+        numberList.addLast(-1);  // Adding -1 at the end of the list
         endTime = System.nanoTime();
         System.out.println("LinkedList Insert at Tail Time: " + (endTime - startTime) + " ns");
 
-        // Delete from Head
+        // Measuring the time for deletion from the head
         startTime = System.nanoTime();
-        linkedList.removeFirst();
+        numberList.removeFirst();  // Removing the first element
         endTime = System.nanoTime();
         System.out.println("LinkedList Delete from Head Time: " + (endTime - startTime) + " ns");
 
-        // Delete from Mid
+        // Measuring the time for deletion from the middle
         startTime = System.nanoTime();
-        linkedList.remove(500000);
+        numberList.remove(500000);  // Removing the element at index 500000
         endTime = System.nanoTime();
         System.out.println("LinkedList Delete from Mid Time: " + (endTime - startTime) + " ns");
 
-        // Delete from Tail
+        // Measuring the time for deletion from the tail
         startTime = System.nanoTime();
-        linkedList.removeLast();
+        numberList.removeLast();  // Removing the last element
         endTime = System.nanoTime();
         System.out.println("LinkedList Delete from Tail Time: " + (endTime - startTime) + " ns");
     }
